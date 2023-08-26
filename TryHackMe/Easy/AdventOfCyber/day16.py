@@ -4,7 +4,7 @@ import os
 import zipfile
 import exiftool
 
-def task1(): 
+def task1():
     """ 
     How many files did you extract(excluding all the .zip files)
     """
@@ -12,11 +12,11 @@ def task1():
     files = os.listdir('./final-final-compressed')
     for file in files:
         # now unzip it
-        with zipfile.ZipFile('./final-final-compressed/'+file, 'r') as zip_ref:
+        with zipfile.ZipFile(f'./final-final-compressed/{file}', 'r') as zip_ref:
             zip_ref.extractall('./extracted')
     # get all files agains
     extracted = os.listdir('./extracted')
-    print('Extracted %s files' % len(extracted))
+    print(f'Extracted {len(extracted)} files')
 
 def task2():
     """ 
@@ -30,14 +30,14 @@ def task2():
     """
     count = 0
     files = os.listdir('./') # get all files
-    
+
     with exiftool.ExifTool() as et: # get exiftool
         files_metadata = et.get_metadata_batch(files) # get all files metadata
     for metadata in files_metadata: # get file metadata one by one
         if 'XMP:Version' in metadata: # check if metadata contains 'XMP:Version'
             count = count + 1 # if so -> count it
-    
-    print('Total Version:1.1 files : %s' %count) 
+
+    print(f'Total Version:1.1 files : {count}') 
 
 def task3():
     """

@@ -12,9 +12,8 @@ from pwn import *
 def egcd(a, b):
     if a == 0:
         return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
+    g, y, x = egcd(b % a, a)
+    return (g, x - (b // a) * y, y)
 
 def modinv(a, m):
     g, x, y = egcd(a, m)
@@ -29,4 +28,4 @@ d = modinv(e,totient)
 m = pow(ct, d, n)
 
 flag = unhex(hex(m)[2:])
-print('plaintext: '+flag.decode())
+print(f'plaintext: {flag.decode()}')

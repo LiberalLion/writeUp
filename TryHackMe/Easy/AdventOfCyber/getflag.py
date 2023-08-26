@@ -11,4 +11,4 @@ while True:
         break
     flag = flag + r["value"]
 
-print("the flag: "+ flag)
+print(f"the flag: {flag}")
